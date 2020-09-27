@@ -9,6 +9,7 @@ class TodoList extends Component {
       todos: []
     };
     this.addTodo = this.addTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   addTodo(todo) {
@@ -17,18 +18,31 @@ class TodoList extends Component {
     }));
   };
 
+  deleteTodo(id) {
+    this.setState({
+      todos: this.state.todos.filter(
+        todo => todo.id !== id
+      )
+    })
+  }
+
   render() {
     return (
       <div>
-        <NewTodoForm
-          addTodo={this.addTodo}
-        />
+        <h1>Todo List</h1>
+        <h2>A simple To Do list created with React</h2>
         {this.state.todos.map(todo => (
           <Todo 
             key={todo.id}
+            id={todo.id}
             todo={todo.todo}
+            deleteTodo={this.deleteTodo}
           />
         ))}
+        <NewTodoForm
+          addTodo={this.addTodo}
+        />
+        
       </div>
     )
   }
