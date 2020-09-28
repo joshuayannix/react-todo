@@ -5,7 +5,7 @@ class NewTodoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todo: ''
+      task: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,7 +21,7 @@ class NewTodoForm extends React.Component {
     evt.preventDefault();
     const newTodo = {...this.state, id: uuid()};
     this.props.addTodo(newTodo);
-    this.setState({ todo: '' });
+    this.setState({ task: '' });
   };
 
   render() {
@@ -29,8 +29,8 @@ class NewTodoForm extends React.Component {
       <form onSubmit = {this.handleSubmit}>
         <label htmlFor="text">Text</label>
         <input type="text"
-          name='todo'
-          value={this.state.todo}
+          name='task'
+          value={this.state.task}
           onChange = {this.handleChange}
         />
         <button>Add Todo!</button>
